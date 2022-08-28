@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+#PBS -l select=1:ncpus=2:mem=32GB
+#PBS -l walltime=4:00:00
+#PBS -N mixer_format
+#PBS -e /home/uqjjian3/jobs_sterr_stout/
+#PBS -o /home/uqjjian3/jobs_sterr_stout/
+#PBS -A UQ-IMB-CNSG
+
+#################################################################
+### Formatting data
+#################################################################
+
+### For CAD
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py csv --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_loc_preformatting/formatted_CAD_VDH_UKB_ebiaGCST005194_N_1000G_ref_loc --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_CAD.csv --auto --head 5
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py zscore --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_CAD.csv | \
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py qc --exclude-ranges 6:26000000-34000000 --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_CAD_z_noMHC.csv
+gzip /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_CAD_z_noMHC.csv
+
+### For MD
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py csv --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_loc_preformatting/formatted_PGC_UKB_depression_no23andme_1000G_ref_loc --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_MD.csv --auto --head 5
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py zscore --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_MD.csv | \
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py qc --exclude-ranges 6:26000000-34000000 --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_MD_z_noMHC.csv
+gzip /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_MD_z_noMHC.csv
+
+### For BD
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py csv --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_loc_preformatting/formatted_BIP_Mullins_2021_1000G_ref_loc --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_BD.csv --auto --head 5
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py zscore --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_BD.csv | \
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py qc --exclude-ranges 6:26000000-34000000 --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_BD_z_noMHC.csv
+gzip /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_BD_z_noMHC.csv
+
+### For SCZ
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py csv --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_loc_preformatting/formatted_SCZ_Lam_2019_1000G_ref_loc --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_SCZ.csv --auto --head 5 
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py zscore --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_SCZ.csv | \
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py qc --exclude-ranges 6:26000000-34000000 --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_SCZ_z_noMHC.csv
+gzip /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_SCZ_z_noMHC.csv
+
+### For HF
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py csv --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_loc_preformatting/formatted_HF_Shah_2020_1000G_ref_loc --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_HF.csv --auto --head 5 
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py zscore --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_HF.csv | \
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py qc --exclude-ranges 6:26000000-34000000 --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_HF_z_noMHC.csv
+gzip /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_HF_z_noMHC.csv
+
+### For AF
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py csv --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_loc_preformatting/formatted_AF_Nielsen_2018_1000G_ref_loc --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_AF.csv --auto --head 5 
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py zscore --sumstats /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_AF.csv | \
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/python_convert/sumstats.py qc --exclude-ranges 6:26000000-34000000 --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_AF_z_noMHC.csv
+gzip /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_AF_z_noMHC.csv
+
+
+
+
+
+
+
+
+
+

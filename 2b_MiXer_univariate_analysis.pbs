@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+#PBS -l select=1:ncpus=5:mem=50GB
+#PBS -l walltime=24:00:00
+#PBS -N AF_u
+#PBS -e /home/uqjjian3/jobs_sterr_stout/
+#PBS -o /home/uqjjian3/jobs_sterr_stout/
+#PBS -A UQ-IMB-CNSG
+#PBS -J 1-20
+
+#########################################
+### Fitting univariate model for AF
+#########################################
+### Fitting the univariate fast model
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/mixer.py fit1 \
+--trait1-file /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_AF_z_noMHC.csv.gz \
+--out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_univariate_fit1/AF_univariate/mixer_formatted_AF_z_noMHC.fit.rep${PBS_ARRAY_INDEX} \
+--extract /QRISdata/Q4319/utils/MiXer/LD_reference/1000G_EUR_Phase3_plink/1000G.EUR.QC.prune_maf0p05_rand2M_r2p8.rep${PBS_ARRAY_INDEX}.snps \
+--bim-file /QRISdata/Q4319/utils/MiXer/LD_reference/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.bim \
+--ld-file /QRISdata/Q4319/utils/MiXer/LD_reference/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.run4.ld \
+--lib /home/uqjjian3/utils/MiXer/mixer/src/build/lib/libbgmg.so \
+--threads 5
+
+### Fitting the univariate full model. "Apply the model to the entire set of SNPs, without constraining to LDSR/w_hm3.justrs"
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/mixer.py test1 \
+--trait1-file /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_AF_z_noMHC.csv.gz \
+--load-params-file /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_univariate_fit1/AF_univariate/mixer_formatted_AF_z_noMHC.fit.rep${PBS_ARRAY_INDEX}.json \
+--out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_univariate_fit1/AF_univariate/mixer_formatted_AF_z_noMHC.test.rep${PBS_ARRAY_INDEX} \
+--bim-file /QRISdata/Q4319/utils/MiXer/LD_reference/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.bim \
+--ld-file /QRISdata/Q4319/utils/MiXer/LD_reference/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.run4.ld \
+--lib  /home/uqjjian3/utils/MiXer/mixer/src/build/lib/libbgmg.so \
+--threads 5
