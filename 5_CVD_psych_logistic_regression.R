@@ -187,3 +187,23 @@ running_glm('AF_prevalent_withDeath', 'MD_PRS + AF_PRS', 'MD_PRS_AF_PRS', 'femal
 running_glm('CAD_prevalent_withDeath', 'MD_PRS + CAD_PRS', 'MD_PRS_CAD_PRS', 'male', 'screened_control', PRS_pheno_file, 'CVD_MD_screened_control/')
 running_glm('HF_prevalent_withDeath', 'MD_PRS + HF_PRS', 'MD_PRS_HF_PRS', 'male', 'screened_control', PRS_pheno_file, 'CVD_MD_screened_control/')
 running_glm('AF_prevalent_withDeath', 'MD_PRS + AF_PRS', 'MD_PRS_AF_PRS', 'male', 'screened_control', PRS_pheno_file, 'CVD_MD_screened_control/')
+
+
+##################################################
+### Performing logistic regression of CVD prevalent on psychiatric disorders PRS in all cohort
+##################################################
+
+############################## With death cases included as prevalent cases ##############################
+### Combined for sex
+running_glm('CAD_prevalent_withDeath', 'MD_PRS', 'MD_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+running_glm('HF_prevalent_withDeath', 'MD_PRS', 'MD_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+running_glm('AF_prevalent_withDeath', 'MD_PRS', 'MD_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+
+running_glm('CAD_prevalent_withDeath', 'SCZ_PRS', 'SCZ_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+running_glm('HF_prevalent_withDeath', 'SCZ_PRS', 'SCZ_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+running_glm('AF_prevalent_withDeath', 'SCZ_PRS', 'SCZ_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+
+running_glm('CAD_prevalent_withDeath', 'BD_PRS', 'BD_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+running_glm('HF_prevalent_withDeath', 'BD_PRS', 'BD_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+running_glm('AF_prevalent_withDeath', 'BD_PRS', 'BD_PRS', 'combined', 'all_cohort', PRS_pheno_file, 'CVD_prevalent_psych_whole_cohort/')
+
