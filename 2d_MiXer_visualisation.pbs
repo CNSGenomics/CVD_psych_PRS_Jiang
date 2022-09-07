@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+#PBS -l select=1:ncpus=2:mem=50GB
+#PBS -l walltime=1:00:00
+#PBS -N bi_vis_n
+#PBS -e /home/uqjjian3/jobs_sterr_stout/
+#PBS -o /home/uqjjian3/jobs_sterr_stout/
+#PBS -A UQ-IMB-CNSG
+
+############################################################
+### echo "Visualising MD and CAD"
+############################################################
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/mixer_figures.py combine --json /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_bivariate_fit2/MD_bivariate/MD_vs_CAD_noMHC.fit.rep@.json --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_bivariate_fit2/MD_bivariate/MD_bivariate_visualisation_density/MD_vs_CAD_noMHC.fit
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/mixer_figures.py combine --json /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_bivariate_fit2/MD_bivariate/MD_vs_CAD_noMHC.test.rep@.json --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_bivariate_fit2/MD_bivariate/MD_bivariate_visualisation_density/MD_vs_CAD_noMHC.test
+/home/uqjjian3/utils/conda_utils/bin/python3.8 /home/uqjjian3/utils/MiXer/mixer/precimed/mixer_figures.py two --json-fit /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_bivariate_fit2/MD_bivariate/MD_bivariate_visualisation_density/MD_vs_CAD_noMHC.fit.json --json-test /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_bivariate_fit2/MD_bivariate/MD_bivariate_visualisation_density/MD_vs_CAD_noMHC.test.json --trait1 'MD' --trait2 'CAD' --trait1-file /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_PGC_UKB_depression_no23andme_z_noMHC.csv.gz --trait2-file /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_formatting_noMHC/mixer_formatted_CAD_VDH_UKB_ebiaGCST005194_N_z_noMHC.csv.gz --out /scratch/user/uqjjian3/CVD_Psych_PRS_project/63_checkpoint_24Aug2022/2_MiXer_polygenic_overlap/MiXer_bivariate_fit2/MD_bivariate/MD_bivariate_visualisation_density/MD_vs_CAD_noMHC --statistic mean std
